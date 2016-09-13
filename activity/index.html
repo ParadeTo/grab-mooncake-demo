@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>抢月饼了</title>
+  <style>
+    .container {
+      width:400px;
+      margin:10px auto;
+      text-align: center;
+    }
+    button {
+      width:200px;
+      height:40px;
+      border-radius: 3px;
+      background-color: gray;
+      color:white;
+      margin: 0 auto;
+      border:0;
+      color:white;
+    }
+    button[disabled]:hover {
+      cursor:not-allowed;
+    }
+    button.active {
+      background-color: #ffcf1d;
+    }
+    button.active:hover{
+      cursor:pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="img/mooncake.jpg" alt="月饼">
+    <button id='btn' disabled="true"></button>
+  </div>
+  <script>
+    var time = 3;
+    var $btn = document.querySelector('#btn');
+    function countDown(time) {
+      var timer = setInterval(function() {
+        if (time === 0) {
+          $btn.innerHTML = '开抢';
+          $btn.setAttribute("class","active");
+          $btn.removeAttribute("disabled");
+          clearInterval(timer);
+          return;
+        }
+        $btn.innerHTML = time;
+        time -= 1;
+      },1000)
+    }
+    function btnClick () {
+      alert('你抢到了月饼，这下糟糕了！')
+    }
+    window.onload = function() {
+        countDown(time);
+        $btn.onclick = btnClick;
+    }
+
+  </script>
+</body>
+</html>
